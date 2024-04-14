@@ -1,6 +1,12 @@
 import sqlite3
 import os
 
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+
 DATABASE_FILE = 'mails.db' # you can change database file name
 
 # =============================     DataBase menager   ==============================================
@@ -75,14 +81,81 @@ def delete_data_by_id(cursor, conn, id):
     conn.commit()
 #====================================     DataBase menager   ==========================================
 
+#====================================     Activity menager   ==========================================
+def activity_menager_menu(cursor,conn):
+    while True:
+        print("\nActivity menager")
+        print("1 -> Email send")
+        print("0 -> Exit\n")
+
+        value = input("Value: ")
+
+        if value == "1":
+            email_send("test","test")
+        elif value == "0":
+            return
+        else:
+            print("Enter a valid value!!!")
 
 def email_send(mail,password):
-    pass
+    sender_email = "@gmail.com"
+    receiver_email = "@gmail.com"
+    password = ""
+
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "multipart test"
+    message["From"] = sender_email
+    message["To"] = receiver_email
+
+    html = """\
+    <html>
+    <head>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 20px;
+        }
+
+        p {
+            font-size: 160px;
+            color: #fff;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        </style>
+    </head>
+    <body>
+        <p>Test,<br>
+        Send!
+        </p>
+    </body>
+    </html>
+    """
+
+    part = MIMEText(html, "html")
+    message.attach(part)
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(sender_email, password)
+        server.sendmail(
+            sender_email, receiver_email, message.as_string()
+        )
+
 
 
 def watch_youtube(mail,password):
     pass
 
+#====================================     Activity menager   ==========================================
 
 def main():
     check_and_create_database()
@@ -108,7 +181,7 @@ def main():
 
         value = input("Value: ")
         if value == "1":
-            pass
+            activity_menager_menu(cursor,conn)
         elif value == "2":
             database_menager_menu(cursor,conn)
 
