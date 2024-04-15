@@ -13,7 +13,7 @@ The program simulates user interactions with email accounts to perform various a
 1. **Open a terminal and navigate to the folder where your project is located using the `cd` command:** 
 
     ```bash
-    cd Account-Activity-Automation
+    cd Account-activity
     ```
 
 2. **Use the python to run the program. Run the following command:** 
