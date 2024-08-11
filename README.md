@@ -1,11 +1,18 @@
-# Account activity | In development / not working
+# Account activity
 
 With this program, you can do activities on mails.
 
 
 ## How does the program work?
 
-The program simulates user interactions with email accounts to perform various activities, including sending emails, watching videos, and engaging with content. It utilizes authentication credentials provided by the user and employs sophisticated algorithms to mimic human behavior, ensuring activities appear natural and avoid detection by email providers.
+The program simulates how users interact with email accounts to perform various actions, including sending emails. It uses the credentials provided by the user for authentication.
+
+User must use a special password for email. 
+
+Exemple: 
+``` 
+xxxx aaaa dddd ffff 
+```
 
 ## How to install and run?
 ### Linux
